@@ -6,7 +6,7 @@ export const BUCKET = 'project-images';
 
 /* Session lives in cookies (SameSite=Strict, Secure on https), split in chunks to stay under the 4KB cookie limit.
    Note: cookies written by browser JS cannot be HttpOnly. Real protection comes from RLS + the CSP in vercel.json. */
-const CHUNK = 3000;
+const CHUNK = 1500; // encoded JSON can triple in size; browsers drop cookies over 4KB
 const opts = () => `; path=/; max-age=${60 * 60 * 24 * 30}; SameSite=Strict${location.protocol === 'https:' ? '; Secure' : ''}`;
 const read = n => { const m = document.cookie.split('; ').find(c => c.startsWith(n + '=')); return m ? decodeURIComponent(m.slice(n.length + 1)) : null; };
 const wipe = n => { document.cookie = `${n}=; path=/; max-age=0; SameSite=Strict`; };

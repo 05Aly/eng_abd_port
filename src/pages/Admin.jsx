@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BUCKET, imageUrl, isHttps, supabase } from '../lib/supabase';
 import { videoEmbed } from '../lib/video';
 
@@ -124,7 +124,7 @@ export default function Admin() {
 
   return (
     <main className="adm">
-      <div className="adm-top" ref={top}><div><p className="cap">Admin</p><h1 className="adm-h">{editing ? 'Edit project' : 'Projects'}</h1></div><button className="btn ghost" onClick={logout}>Sign out</button></div>
+      <div className="adm-top" ref={top}><div><p className="cap">Admin</p><h1 className="adm-h">{editing ? 'Edit project' : 'Projects'}</h1></div><div className="row"><Link className="btn ghost" to="/">View site</Link><button className="btn ghost" onClick={logout}>Sign out</button></div></div>
 
       <form onSubmit={submit} className="adm-form" noValidate>
         <label>Title<input value={f.title} onChange={set('title')} maxLength={120} required /></label>
