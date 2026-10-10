@@ -6,6 +6,7 @@ import Home from './pages/Home';
 // Admin code is a separate chunk: it is never downloaded by normal visitors.
 const Admin = lazy(() => import('./pages/Admin'));
 const AdminLogin = lazy(() => import('./pages/AdminLogin'));
+const Project = lazy(() => import('./pages/Project'));
 
 /* 'loading' | 'admin' | 'guest'. getUser() asks the server to validate the token, then is_admin() checks the admins table. */
 function useAdminStatus() {
@@ -45,6 +46,7 @@ export default function App() {
     <Suspense fallback={null}>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/projects/:id" element={<Project />} />
         <Route path="/admin_add" element={<AdminGate />} />
         <Route path="/admin_add/login" element={<LoginGate />} />
         <Route path="*" element={<Navigate to="/" replace />} />

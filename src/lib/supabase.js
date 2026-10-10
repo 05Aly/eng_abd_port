@@ -31,4 +31,4 @@ export const supabase = configured
   : null;
 
 export const imageUrl = path => (supabase && path ? supabase.storage.from(BUCKET).getPublicUrl(path).data.publicUrl : '');
-export const isHttps = u => typeof u === 'string' && /^https:\/\//i.test(u);
+export const isHttps = u => { try { return new URL(String(u).trim()).protocol === 'https:'; } catch { return false; } };
